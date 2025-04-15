@@ -6,30 +6,34 @@ import PropTypes from "prop-types";
 import "./style.scss";
 
 const Select = ({
-  selection,
-  onChange,
-  name,
-  titleEmpty,
-  label,
+  selection, // liste des selection
+  onChange, // fonction de rappel lorsque une sélection est modifiée
+  name, // nom du champas de sélection
+  titleEmpty, // titre
+  label, // libéllé du champ
   type = "normal",
 }) => {
-  const [value, setValue] = useState();
-  const [collapsed, setCollapsed] = useState(true);
+  const [value, setValue] = useState(); // état de la valeur sélectionné
+  const [collapsed, setCollapsed] = useState(true); // état de l'affichage des options sélectionnées
+  
+  // fonction pour changer la valeur sélectionné
   const changeValue = (newValue) => {
-    onChange();
-    setValue(newValue);
-    setCollapsed(newValue);
+    onChange(newValue); // passe newValue à la fonction de rappel
+    setValue(newValue);// mise à jour de la valeur leur sélectionné
+    setCollapsed(true);// le menu se ferme aprèsnsélection
   };
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
-      {label && <div className="label">{label}</div>}
+      {label && <div className="label">{label}</div>}{/* affichage du libéllé s'il est sélectionnée */}
       <div className="Select">
         <ul>
+          {/* affichage du titre sélectionné ou valeur par défaut */}
           <li className={collapsed ? "SelectTitle--show" : "SelectTitle--hide"}>
             {value || (!titleEmpty && "Toutes")}
           </li>
           {!collapsed && (
             <>
+            {/* affichage de l'option Toutes */}
               {!titleEmpty && (
                 <li onClick={() => changeValue(null)}>
                   <input defaultChecked={!value} name="selected" type="radio" />{" "}
@@ -49,6 +53,7 @@ const Select = ({
             </>
           )}
         </ul>
+        {/* champ caché pour stocker la valeur choisie */}
         <input type="hidden" value={value || ""} name={name} />
         <button
           type="button"
