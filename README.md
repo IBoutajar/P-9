@@ -13,3 +13,11 @@ L'application est le site d'une agence evenementielle.
 
 ## Tests
 - `yarn test`
+# Projet-10-Debug-une-application-React
+# Projet-10-Debug-une-application-React
+# Projet-10-Debug-une-application-React
+# Projet-10-Debug-une-application-React
+# Projet-10-Debug-une-application-React
+# Projet-10-Debug-une-application-React
+# Projet-10-Debug-une-application-React
+# Projet-10-Debug-une-application-React

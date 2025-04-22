@@ -76,7 +76,7 @@ const EventList = () => {
           <div className="Pagination">
             {[...Array(pageNumber)].map((_, index) => (
               <a
-                key={`${index.id}`}
+                key={index.id}
                 href="#events"
                 onClick={() => setCurrentPage(index + 1)}
               >
