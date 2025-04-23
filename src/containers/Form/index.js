@@ -8,7 +8,7 @@ import Button, { BUTTON_TYPES } from "../../components/Button";
 const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 1000); });
 
 // Définition du composant Form
-const Form = ({ onSuccess, onError, setConfirmationMessage }) => {
+const Form = ({ onSuccess, onError, setConfirmationMessag }) => {
   // État local pour gérer l'envoi du formulaire
   const [sending, setSending] = useState(false);
 
@@ -31,23 +31,27 @@ const Form = ({ onSuccess, onError, setConfirmationMessage }) => {
       }
 
       if (isAnyFieldEmpty) {
-        setConfirmationMessage("Veuillez remplir tous les champs du formulaire");
+        setConfirmationMessag("Veuillez remplir tous les champs du formulaire");
         onError()
-        return;
+        
+        
       }
-
-   try {
+      else {
+        try {
         await mockContactApi();
-        setSending(false);
-        setConfirmationMessage("Message envoyé !");
+        
+        setConfirmationMessag("Message envoyé !");
         onSuccess(); // Appeler onSuccess lorsque l'envoi réussit
       } catch (err) {
-        setSending(false);
+        
         onError(err); // Appeler onError en cas d'erreur
-      }
+      }}
+      setSending(false)
     },
-    [onSuccess, onError, setConfirmationMessage]
+    [onSuccess, onError, setConfirmationMessag]
   );
+      
+   
 
   return (
     <form onSubmit={sendContact}>
@@ -62,7 +66,7 @@ const Form = ({ onSuccess, onError, setConfirmationMessage }) => {
             type="large"
             titleEmpty
           />
-          <Field placeholder="" label="Email" />
+          <Field placeholder="" label="Email" type={FIELD_TYPES.EMAIL}/>
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
           </Button>
@@ -83,14 +87,14 @@ const Form = ({ onSuccess, onError, setConfirmationMessage }) => {
 Form.propTypes = {
   onError: PropTypes.func,
   onSuccess: PropTypes.func,
-  setConfirmationMessage: PropTypes.func, // Ajout de la validation pour la fonction de mise à jour du message de confirmation
+  setConfirmationMessag: PropTypes.func, // Ajout de la validation pour la fonction de mise à jour du message de confirmation
 };
 
 // Définition des valeurs par défaut des propriétés du composant Form
 Form.defaultProps = {
   onError: () => null,
   onSuccess: () => null,
-  setConfirmationMessage: () => null, // Définition d'une fonction vide par défaut
+  setConfirmationMessag: () => null, // Définition d'une fonction vide par défaut
 };
 
 export default Form;
