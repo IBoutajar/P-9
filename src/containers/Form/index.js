@@ -17,7 +17,7 @@ const Form = ({ onSuccess, onError, setConfirmationMessag }) => {
     async (evt) => {
       evt.preventDefault();
       setSending(true);
-
+      
       const formFields = evt.target.elements;
       let isAnyFieldEmpty = false;
       // eslint-disable-next-line no-plusplus
@@ -31,22 +31,21 @@ const Form = ({ onSuccess, onError, setConfirmationMessag }) => {
       }
 
       if (isAnyFieldEmpty) {
-        setConfirmationMessag("Veuillez remplir tous les champs du formulaire");
+        
         onError()
-        
-        
-      }
-      else {
-        try {
         await mockContactApi();
-        
-        setConfirmationMessag("Message envoyé !");
+        setSending(false)
+        return;
+      }
+
+   try {
+        await mockContactApi();
+        setSending(false);
         onSuccess(); // Appeler onSuccess lorsque l'envoi réussit
       } catch (err) {
-        
+        setSending(false);
         onError(err); // Appeler onError en cas d'erreur
-      }}
-      setSending(false)
+      }
     },
     [onSuccess, onError, setConfirmationMessag]
   );
@@ -67,7 +66,7 @@ const Form = ({ onSuccess, onError, setConfirmationMessag }) => {
             titleEmpty
           />
           <Field placeholder="" label="Email" type={FIELD_TYPES.EMAIL}/>
-          <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
+          <Button type={BUTTON_TYPES.SUBMIT} disabled={sending} >
             {sending ? "En cours" : "Envoyer"}
           </Button>
         </div>
