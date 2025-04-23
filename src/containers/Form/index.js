@@ -32,7 +32,7 @@ const Form = ({ onSuccess, onError, setConfirmationMessag }) => {
 
       if (isAnyFieldEmpty) {
         
-        onError()
+        onError() 
         await mockContactApi();
         setSending(false)
         return;
