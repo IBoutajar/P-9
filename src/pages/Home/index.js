@@ -103,7 +103,7 @@ const Home = () => {
   }}
   onError={() => {
     setIsOpened(true);
-    setConfirmationMessage("Veuillez remplir tous les champs du formulai");
+    setConfirmationMessage("Veuillez remplir tous les champs du formulaire");
     setError('')
   }}
 />
