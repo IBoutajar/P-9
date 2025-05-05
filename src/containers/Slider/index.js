@@ -7,8 +7,8 @@ import "./style.scss";
 const Slider = () => {
   // utilisation du hook useDate pour récupérer les données
   const { data } = useData();
-  // initialisation de l'état 'index' avec la valeur 0
-  const [index, setIndex] = useState(0);//
+  // initialisation de l'état 'indexImageSlider' avec la valeur 0
+  const [indexImageSlider, setIndexImageSlider] = useState(0);//
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
   // tri des évenements par date décroissantes
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
@@ -18,8 +18,8 @@ const Slider = () => {
     // vérification si byDateDesc est défini
     if (byDateDesc) {
       setTimeout(
-        // maj de l'index en s'assurant qu'il reste dans les limites
-        () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
+        // maj de l'indexImageSlider en s'assurant qu'il reste dans les limites
+        () => setIndexImageSlider(indexImageSlider < byDateDesc.length - 1 ? indexImageSlider + 1 : 0),
         5000
       );
     }
@@ -33,7 +33,7 @@ const Slider = () => {
     {byDateDesc?.map((event, idx) => (
       <div
         key={event.title}
-        className={`SlideCard SlideCard--${index === idx ? "display" : "hide"}`}
+        className={`SlideCard SlideCard--${indexImageSlider === idx ? "display" : "hide"}`}
       >
         <img src={event.cover} alt="forum" />
         <div className="SlideCard__descriptionContainer">
@@ -53,7 +53,7 @@ const Slider = () => {
             key={focus.title}
             type="radio"
             name="radio-button"
-            checked={index === radioIdx} // index changed
+            checked={indexImageSlider === radioIdx}
             readOnly
           />
         ))}
