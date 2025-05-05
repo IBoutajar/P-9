@@ -26,8 +26,8 @@ const Home = () => {
   }
 
   // État local pour gérer le message de confirmation
-  const [confirmationMessage, setConfirmationMessage] = useState("");
-  const [error, setError] = useState('')
+  const [confirmationMessageTitle, setConfirmationMessageTitle] = useState("");
+  const [confirmationMessageContent, setConfirmationMessageContent] = useState('')
 
   return (
     <>
@@ -88,8 +88,8 @@ const Home = () => {
           <Modal
             Content={
               <div id="messageConfirm" className="ModalMessage--success">
-                <div>{confirmationMessage}</div>
-                <p>{error}</p>
+                <div>{confirmationMessageTitle}</div>
+                <p>{confirmationMessageContent}</p>
               </div>
             }
           >
@@ -98,13 +98,13 @@ const Home = () => {
               <Form 
   onSuccess={() => {
     setIsOpened(true);
-    setConfirmationMessage("Message envoyé !");
-    setError('Merci pour votre message, nous tâcherons de vous répondre dans les plus brefs délais.')
+    setConfirmationMessageTitle("Message envoyé !");
+    setConfirmationMessageContent('Merci pour votre message, nous tâcherons de vous répondre dans les plus brefs délais.')
   }}
   onError={() => {
     setIsOpened(true);
-    setConfirmationMessage("Veuillez remplir tous les champs du formulaire");
-    setError('')
+    setConfirmationMessageTitle("Veuillez remplir tous les champs du formulaire");
+    setConfirmationMessageContent('')
   }}
 />
             )}
